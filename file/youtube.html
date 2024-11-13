@@ -148,23 +148,129 @@
         <h2>Leave Us Your Info</h2>
         <p>and we will get back to you.</p>
         <form>
-            <label for="fullname">Full Name*</label>
-            <input type="text" id="fullname" name="fullname" required>
+             <label for="name">Full Name*</label>
+            <input type="text" id="name" name="name" onkeyup="validateName()" required>
+            <div class="message" id="nameMessage"></div>
 
             <label for="email">Email*</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" onkeyup="validateEmail()" required>
+            <div class="message" id="emailMessage"></div>
 
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone">
+            <input type="tel" id="phone" name="phone" onkeyup="validatePhone()" required>
+            <div class="message" id="phoneMessage"></div>
 
             <label for="subject">Subject*</label>
-            <input type="text" id="subject" name="subject" required>
+            <input type="text" id="subject" name="subject" onkeyup="validateSubject()" required>
+            <div class="message" id="subjectMessage"></div>
+            
 
             <label for="message">Message*</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
+            <textarea id="message" name="message" rows="4" onkeyup="validateMessage()"  required></textarea>
+            <div class="message" id="messageMessage"></div>
 
-            <button type="submit">Submit Now</button>
-        </form>
+            <button type="submit">Submit Now</button> 
+            
+    </form>
+
+         
+        <script>
+             function validateName(){
+    const name = document.getElementById("name").value;
+    const nameInput = document.getElementById('name');
+    const nameMessage = document.getElementById('nameMessage');
+    
+    if(name.length >= 3){
+        nameInput.style.borderColor = 'green';
+        nameMessage.textContent = 'Name look good';
+        nameMessage.style.color = 'green';
+        return true;
+    }
+    else{
+        nameInput.style.borderColor = 'red';
+        nameMessage.textContent = "Name should be greater than 3 letters"
+        nameMessage.style.color = 'red'
+        return false;
+    }
+}
+
+function validateEmail(){
+    const email = document.getElementById("email").value;
+    const emailInput = document.getElementById('email');
+    const emailMessage = document.getElementById('emailMessage');
+    const emailPattern = /^[a-zA-Z0-_9]+@[a-zA-z0-9.-]+\.[a-zA-Z]{2,6}/;
+    if(emailPattern.test(email)){
+        emailInput.style.borderColor = 'green';
+        emailMessage.textContent = 'Valid Email';
+        emailMessage.style.color = 'green';
+        return true;
+    }
+    else{
+        emailInput.style.borderColor = 'red';
+        emailMessage.textContent = "Enter a valid Email"
+        emailMessage.style.color = 'red'
+        return false;
+    }
+}
+function validatePhone() {
+    const phone = document.getElementById("phone").value;
+    const phoneInput = document.getElementById("phone");
+    const phoneMessage = document.getElementById("phoneMessage");
+
+   
+    const phonePattern = /^[0-9]{10}$/;
+    if (phonePattern.test(phone)) {
+        phoneInput.style.borderColor = 'green';
+        phoneMessage.textContent = 'Phone number looks good';
+        phoneMessage.style.color = 'green';
+        return true;
+    } else {
+        phoneInput.style.borderColor = 'red';
+        phoneMessage.textContent = 'Phone number must be exactly 10 digits';
+        phoneMessage.style.color = 'red';
+        return false;
+    }
+}
+
+
+function validateSubject() {
+    const subject = document.getElementById("subject").value;
+    const subjectInput = document.getElementById("subject");
+    const subjectMessage = document.getElementById("subjectMessage");
+
+    
+    if (subject.length >= 5) {
+        subjectInput.style.borderColor = 'green';
+        subjectMessage.textContent = 'Subject looks good';
+        subjectMessage.style.color = 'green';
+        return true;
+    } else {
+        subjectInput.style.borderColor = 'red';
+        subjectMessage.textContent = 'Subject must be at least 5 characters long';
+        subjectMessage.style.color = 'red';
+        return false;
+    }
+}
+function validateMessage() {
+    const message = document.getElementById("message").value;
+    const messageInput = document.getElementById("message");
+    const messageMessage = document.getElementById("messageMessage");
+
+   
+    if (message.length >= 10) {
+        messageInput.style.borderColor = 'green';
+        messageMessage.textContent = 'Message looks good';
+        messageMessage.style.color = 'green';
+        return true;
+    } else {
+        messageInput.style.borderColor = 'red';
+        messageMessage.textContent = 'Message must be at least 10 characters long';
+        messageMessage.style.color = 'red';
+        return false;
+    }
+}
+
+        </script>
     </div>
  </div>
 
